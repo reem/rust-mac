@@ -6,4 +6,7 @@
 //! A collection of great and ubiqutitous macros.
 //!
 
+pub mod test;
+pub mod mem;
+pub mod format;
 pub mod syntax_ext;
