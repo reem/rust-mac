@@ -6,3 +6,4 @@
 //! A collection of great and ubiqutitous macros.
 //!
 
+pub mod syntax_ext;
