@@ -23,5 +23,5 @@ mac = "*"
 
 ## License
 
-MIT
+MIT/Apache-2.0, like rust itself
 
