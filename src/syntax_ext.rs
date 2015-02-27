@@ -15,7 +15,7 @@ macro_rules! ext_bail {
 #[macro_export]
 macro_rules! ext_bail_if {
     ($e:expr, $cx:expr, $sp:expr, $msg:expr) => {{
-        if $e { bail!($cx, $sp, $msg) }
+        if $e { ext_bail!($cx, $sp, $msg) }
     }}
 }
 
@@ -25,7 +25,7 @@ macro_rules! ext_expect {
     ($cx:expr, $sp:expr, $e:expr, $msg:expr) => {{
         match $e {
             Some(x) => x,
-            None => bail!($cx, $sp, $msg),
+            None => ext_bail!($cx, $sp, $msg),
         }
     }}
 }
