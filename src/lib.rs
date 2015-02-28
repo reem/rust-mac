@@ -10,3 +10,4 @@ pub mod test;
 pub mod mem;
 pub mod format;
 pub mod syntax_ext;
+pub mod matches;
