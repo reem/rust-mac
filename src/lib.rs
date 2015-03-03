@@ -19,13 +19,13 @@ pub mod matches;
 ///
 /// # Examples
 ///
-/// ```notest
-/// # // FIXME: Import the macro here, currently the compiler complains about
-/// # // missing `unwrap_or_return!`.
+/// ```
+/// # #[macro_use] extern crate mac;
 /// fn take_pair<I:Iterator>(iter: &mut I) -> Option<(<I as Iterator>::Item, <I as Iterator>::Item)> {
 ///    let first = unwrap_or_return!(iter.next(), None);
 ///    Some((first, unwrap_or_return!(iter.next(), None)))
 /// }
+/// # fn main() { }
 /// ```
 #[macro_export]
 macro_rules! unwrap_or_return {
