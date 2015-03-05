@@ -27,7 +27,8 @@ macro_rules! matches {
 }
 
 /// Work around "error: unexpected token: `an interpolated tt`", whatever that
-/// means.
+/// means. (Probably rust-lang/rust#22819.)
+#[doc(hidden)]
 #[macro_export]
 macro_rules! _tt_as_expr_hack {
     ($value:expr) => ($value)

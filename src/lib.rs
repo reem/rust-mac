@@ -19,15 +19,51 @@ pub mod matches;
 ///
 /// # Examples
 ///
-/// ```notest
-/// # // FIXME: Import the macro here, currently the compiler complains about
-/// # // missing `unwrap_or_return!`.
+/// ```
+/// # #[macro_use] extern crate mac;
 /// fn take_pair<I:Iterator>(iter: &mut I) -> Option<(<I as Iterator>::Item, <I as Iterator>::Item)> {
 ///    let first = unwrap_or_return!(iter.next(), None);
 ///    Some((first, unwrap_or_return!(iter.next(), None)))
 /// }
+/// # fn main() { }
 /// ```
 #[macro_export]
 macro_rules! unwrap_or_return {
     ($e:expr, $r:expr) => (match $e { Some(e) => e, None => return $r, })
+}
+
+/// Do-while loop.
+///
+/// # Examples
+///
+/// ```
+/// # #[macro_use] extern crate mac;
+/// # fn main() {
+/// let mut i = 0;
+/// let mut n = 0;
+///
+/// do_while!({
+///     n += i;
+///     i += 1;
+/// } while i < 5);
+///
+/// assert_eq!(n, 10);
+/// # }
+/// ```
+///
+/// The loop always executes at least once.
+///
+/// ```
+/// # #[macro_use] extern crate mac;
+/// # fn main() {
+/// let mut ran = false;
+/// do_while!({ ran = true } while false);
+/// assert!(ran);
+/// # }
+/// ```
+#[macro_export]
+macro_rules! do_while {
+    ($body:block while $condition:expr) => {
+        while { $body; $condition } { }
+    }
 }
