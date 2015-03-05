@@ -11,6 +11,7 @@ pub mod mem;
 pub mod format;
 pub mod syntax_ext;
 pub mod matches;
+pub mod inspect;
 
 /// Unwraps an `Option` or returns from the function with the specified return
 /// value.
