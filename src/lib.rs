@@ -12,6 +12,7 @@ pub mod format;
 pub mod syntax_ext;
 pub mod matches;
 pub mod inspect;
+pub mod cfg;
 
 /// Unwraps an `Option` or returns from the function with the specified return
 /// value.
