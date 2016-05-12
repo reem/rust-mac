@@ -63,9 +63,35 @@ macro_rules! unwrap_or_return {
 /// assert!(ran);
 /// # }
 /// ```
+///
+/// `break` and `continue` work as in other loops.
+///
+/// ```
+/// # #[macro_use] extern crate mac;
+/// # fn main() {
+/// let mut i = 0;
+/// do_while!({
+///     if i == 0 {
+///         i += 1;
+///         continue;
+///     } else if i == 2 {
+///         break;
+///     } else {
+///         i += 1;
+///     }
+/// } while i != 0);
+/// assert_eq!(i, 2);
+/// # }
+/// ```
 #[macro_export]
 macro_rules! do_while {
     ($body:block while $condition:expr) => {
-        while { $body; $condition } { }
+        {
+            let mut __do_while_ran = false;
+            while !__do_while_ran || $condition {
+                __do_while_ran = true;
+                $body
+            }
+        }
     }
 }
