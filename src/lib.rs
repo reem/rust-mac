@@ -87,9 +87,9 @@ macro_rules! unwrap_or_return {
 macro_rules! do_while {
     ($body:block while $condition:expr) => {
         {
-            let mut __do_while_ran = false;
-            while !__do_while_ran || $condition {
-                __do_while_ran = true;
+            let mut ran = false;
+            while !ran || $condition {
+                ran = true;
                 $body
             }
         }
