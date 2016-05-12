@@ -18,11 +18,15 @@
 ///
 /// ```
 /// # #[macro_use] extern crate mac;
+/// # use std::borrow::Cow;
 /// # fn main() {
 /// let formatted = format_if!(true, "Vague error", "Error code {:?}", 3);
 ///
 /// assert_eq!(&formatted[..], "Error code 3");
-/// assert!(formatted.is_owned());
+/// match formatted {
+///     Cow::Owned(..) => {},
+///     _ => panic!("not owned"),
+/// }
 ///
 /// let not_formatted = format_if!(false, "Vague error", "Error code {:?}", {
 ///     // Note that the argument is not evaluated.
@@ -30,7 +34,10 @@
 /// });
 ///
 /// assert_eq!(&not_formatted[..], "Vague error");
-/// assert!(not_formatted.is_borrowed())
+/// match not_formatted {
+///     Cow::Borrowed(..) => {},
+///     _ => panic!("not borrowed"),
+/// }
 /// # }
 /// ```
 #[macro_export]
