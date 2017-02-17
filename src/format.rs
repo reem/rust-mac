@@ -42,7 +42,7 @@
 macro_rules! format_if {
     ($enabled:expr, $borrowed:expr, $fmt:expr, $($args:expr),*) => {
         if $enabled {
-            ::std::borrow::Cow::Owned(format!($fmt, $($args),*))
+            ::std::borrow::Cow::Owned(format!($fmt, $($args),*)) as ::std::borrow::Cow<str>
         } else {
             ::std::borrow::Cow::Borrowed($borrowed)
         }
