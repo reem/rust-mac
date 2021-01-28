@@ -63,6 +63,8 @@ macro_rules! unwrap_or_return {
 /// assert!(ran);
 /// # }
 /// ```
+///
+/// The loop control statements `break` and `continue` are unavailable.
 #[macro_export]
 macro_rules! do_while {
     ($body:block while $condition:expr) => {
